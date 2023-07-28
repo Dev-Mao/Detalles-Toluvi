@@ -23,7 +23,8 @@ function Header(props) {
 
         <div className="filter-sort-container">
             <select className="filter-sort-select" defaultValue={''} id="category" name="category" onChange={handleCategoryChange} >
-              <option disabled value=''>Categoría</option>    
+              <option disabled value=''>Categoría</option>
+              <option value="all">Todas</option>    
               <option value="boxes">Cajas sorpresa</option>
               <option value="breakfast">Desayunos sorpresa</option>  
               <option value="globes">Globos</option>
@@ -31,7 +32,7 @@ function Header(props) {
               <option value="birthday">Cumpleaños</option>
               <option value="amor">Amor</option>       
               <option value="family">Familia</option>    
-              <option value="other">Otro</option>  
+              <option value="other">Otra</option>  
             </select>
           </div>
           <div className="filter-sort-container">

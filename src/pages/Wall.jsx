@@ -3,8 +3,8 @@ import Products from "../components/Products";
 import { useState } from "react";
 function Wall() {
 
-  const [filter, setFilter] = useState(null)
-  const [orderby, setOrderby] = useState(null)
+  const [filter, setFilter] = useState('all')
+  const [orderby, setOrderby] = useState("")
 
   return (
     <>
