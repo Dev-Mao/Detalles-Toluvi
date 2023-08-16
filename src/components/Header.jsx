@@ -1,8 +1,29 @@
 import LogoPng from "../assets/LogoPng.png"
+import {AiFillSetting} from "react-icons/ai"
+import {MdExitToApp} from 'react-icons/md'
+import { useNavigate } from "react-router-dom";
+import { signOut, getAuth } from 'firebase/auth';
+import { app } from "../lib/firebase";
 
 function Header(props) {
-  
+  const isAdmin = localStorage.getItem('admin');
 
+  const auth = getAuth(app);
+  const navigate = useNavigate();
+
+  const handleGoToLogin  = () =>{
+    navigate('/login')
+  } 
+
+  const handleLogout  = () =>{    
+    signOut(auth)
+        .then(() => {
+          props.setAdmin(null)
+          navigate('/')
+        })
+        .catch(() => {
+        });
+  } 
   
   const handleCategoryChange = (event) => {
     props.setFilter(event.target.value);
@@ -42,7 +63,14 @@ function Header(props) {
                 <option value="des">Precio Descendente</option>
             </select>
         </div>
+        {props.admin? (
+                    <MdExitToApp onClick={handleLogout}/>
+                ) : (
+                    <AiFillSetting onClick={handleGoToLogin}/>
+                ) }
+        
     </header>
+
     </>
   );
 }

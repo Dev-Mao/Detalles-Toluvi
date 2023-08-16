@@ -1,10 +1,10 @@
+
 import { useForm } from 'react-hook-form'
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { getStorage } from 'firebase/storage';
 
-
-function NewProduct() {
+function NewProduct(props) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
     const onSubmit = async (data) =>{
@@ -39,15 +39,17 @@ function NewProduct() {
             price,
             images: imageUrls,
             });
-            reset();
+            props.setShowNewProduct(false)
+            reset();            
         } catch (error) {
             console.error('Error adding product to Firestore:', error);
         }
-
 }
 
     return (
-    <>
+ 
+        <>
+           
         <form className="form-new-product" onSubmit={handleSubmit(onSubmit)}> 
             <div className="container-input-new-product">           
                 <label htmlFor="name">Nombre</label>   
@@ -188,9 +190,11 @@ function NewProduct() {
                 {errors.images && <p className="error-message">{errors.images.message}</p>}
             </div>  
 
-            <button type="submit" className="create-btn">Create</button>
-        </form>     
-    </>
+            <button type="submit" className="create-btn">Crear</button>
+        </form>
+             
+        </>
+
     );
 }
 

@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "detalles-toluvi"
-  }
+    "default": "detalles-toluvi",
+    "toluvi": "detalles-toluvi"
+  },
+  "targets": {},
+  "etags": {}
 }

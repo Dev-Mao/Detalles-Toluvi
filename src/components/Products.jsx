@@ -36,7 +36,7 @@ function Products(props) {
         .catch((error) => {
           console.error('Error obteniendo los datos:', error);
         });
-    }, [props.filter, props.orderby]);
+    }, [props.filter, props.orderby, props.showNewProduct]);
 
   return (
     <>

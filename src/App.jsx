@@ -1,6 +1,6 @@
 
 import Wall from './pages/Wall';
-import NewProduct from './pages/NewProduct';
+import Login from './pages/Login';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Wall />} />
-        <Route path="/admin" element={<NewProduct />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
