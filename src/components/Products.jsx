@@ -5,6 +5,8 @@ import ProductCard from './ProductCard';
 
 function Products(props) {
   const [products, setProducts] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false); 
   const db = getFirestore(app);
   const productsRef = collection(db, 'products');
 
@@ -22,27 +24,32 @@ function Products(props) {
         filteredQuery = query(filteredQuery, orderBy('price', 'asc'));
       } else if (props.orderby === 'des') {
         filteredQuery = query(filteredQuery, orderBy('price', 'desc'));
-      }
-  
+      }   
+      
+
       // Obtener los productos según la consulta filtrada
       getDocs(filteredQuery)
         .then((querySnapshot) => {
-          const productsData = [];
+          let productsData = [];
           querySnapshot.forEach((doc) => {
             productsData.push({ id: doc.id, ...doc.data() });
           });
+          // Filtrar los productos por el término de búsqueda
+        if (props.searchTerm) {
+          productsData = productsData.filter(product => product.name.toLowerCase().includes(props.searchTerm.toLowerCase()));
+        }
           setProducts(productsData);
         })
         .catch((error) => {
           console.error('Error obteniendo los datos:', error);
         });
-    }, [props.filter, props.orderby, props.showNewProduct]);
+    }, [props.filter, props.orderby, props.showNewProduct, isEditing, isDeleting, props.searchTerm]);
 
   return (
     <>
       <div className="container-products">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard isDeleting ={isDeleting} setIsDeleting = {setIsDeleting} isEditing = {isEditing} setIsEditing = {setIsEditing} admin = {props.admin} key={product.id} product={product} />
         ))}
       </div>
     </>

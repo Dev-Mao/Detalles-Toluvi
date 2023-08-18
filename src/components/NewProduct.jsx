@@ -14,7 +14,6 @@ function NewProduct(props) {
         const categories = data.categories;
         const price = data.price;
         const images = data.images;
-        console.log(images)
          // Upload images to Firebase Storage
         const storage = getStorage(); // Initialize Firebase Storage
         const imageUrls = [];
