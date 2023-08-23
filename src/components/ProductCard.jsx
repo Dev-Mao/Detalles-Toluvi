@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { getFirestore, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { getStorage } from "firebase/storage";
+import PropTypes from "prop-types";
+import styles from "./Products.module.css";
+
 
 function ProductCard(props) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -72,7 +75,7 @@ function ProductCard(props) {
   };
 
   return (
-    <div className="product-card">
+    <div className={styles.productCard}>
       {props.isEditing ? (
         // Vista editable
         <>
@@ -233,6 +236,7 @@ function ProductCard(props) {
         // Vista de solo lectura
         <>
           <h2 className="product-name">{props.product.name}</h2>
+          <div className={styles.containerImg}>
           {props.product.images.map((image, index) => (
             <img
               className="product-img"
@@ -244,6 +248,7 @@ function ProductCard(props) {
               }}
             />
           ))}
+           </div>
 
           {/* Flechas para cambiar de imagen */}
           <div>
@@ -261,7 +266,7 @@ function ProductCard(props) {
             </button>
           </div>
           <span className="product-price">${props.product.price}</span>
-          <p className="product-price">{props.product.description}</p>
+          <p className={styles.productDescription}>{props.product.description}</p>
         </>
       )}
 
@@ -291,3 +296,12 @@ function ProductCard(props) {
 }
 
 export default ProductCard;
+
+ProductCard.propTypes = {
+  product: PropTypes.object,
+  admin: PropTypes.string,
+  isEditing: PropTypes.bool,
+  isDeleting: PropTypes.bool,
+  setIsDeleting: PropTypes.func,
+  setIsEditing: PropTypes.func
+};

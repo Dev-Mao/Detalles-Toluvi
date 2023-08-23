@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { app } from "../lib/firebase";
 import NewProduct from "../components/NewProduct";
+
 function Wall() {
   const auth = getAuth(app);
 

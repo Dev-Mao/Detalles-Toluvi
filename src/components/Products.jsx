@@ -2,7 +2,8 @@
 import { app } from '../lib/firebase';
 import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
-
+import PropTypes from "prop-types";
+import styles from "./Products.module.css";
 function Products(props) {
   const [products, setProducts] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -43,11 +44,11 @@ function Products(props) {
         .catch((error) => {
           console.error('Error obteniendo los datos:', error);
         });
-    }, [props.filter, props.orderby, props.showNewProduct, isEditing, isDeleting, props.searchTerm]);
+    }, [props.filter, props.orderby, props.showNewProduct, isEditing, isDeleting, props.searchTerm, productsRef]);
 
   return (
     <>
-      <div className="container-products">
+      <div className={styles.containerProducts}>
         {products.map((product) => (
           <ProductCard isDeleting ={isDeleting} setIsDeleting = {setIsDeleting} isEditing = {isEditing} setIsEditing = {setIsEditing} admin = {props.admin} key={product.id} product={product} />
         ))}
@@ -58,3 +59,11 @@ function Products(props) {
 
 
 export default Products;
+
+Products.propTypes = {
+  filter: PropTypes.string,
+  orderby: PropTypes.string,
+  showNewProduct: PropTypes.bool,
+  searchTerm: PropTypes.string,
+  admin: PropTypes.string,
+};

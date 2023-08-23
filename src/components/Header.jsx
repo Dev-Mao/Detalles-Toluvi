@@ -4,9 +4,9 @@ import { MdExitToApp } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { signOut, getAuth } from "firebase/auth";
 import { app } from "../lib/firebase";
-
+import PropTypes from "prop-types";
+import styles from "./Header.module.css";
 function Header(props) {
-
   const auth = getAuth(app);
   const navigate = useNavigate();
 
@@ -34,69 +34,71 @@ function Header(props) {
   return (
     <>
       <header>
-        <img src={LogoPng} className="logo-png" alt="Logo Toluvi en PNG" />
-        <div className="search-bar">
-          <div className="search-bar">
+        <img src={LogoPng} className={styles.logo} alt="Logo Toluvi en PNG" />
+        <nav>
             <input
               type="search"
-              className="search-bar-input"
+              className={styles.searchInput}
               name="search"
               placeholder="Buscar productos..."
               value={props.searchTerm}
-              onChange={(e) => props.setSearchTerm(e.target.value)} 
+              onChange={(e) => props.setSearchTerm(e.target.value)}
             />
-              {window.innerWidth < 900 && (
-                <button type="button">Buscar</button>
-              )}
-            
-          </div>
-        </div>
 
-        <div className="filter-sort-container">
-          <select
-            className="filter-sort-select"
-            defaultValue={""}
-            id="category"
-            name="category"
-            onChange={handleCategoryChange}
-          >
-            <option disabled value="">
-              Categoría
-            </option>
-            <option value="all">Todas</option>
-            <option value="boxes">Cajas sorpresa</option>
-            <option value="breakfast">Desayunos sorpresa</option>
-            <option value="globes">Globos</option>
-            <option value="aniversary">Aniversario</option>
-            <option value="birthday">Cumpleaños</option>
-            <option value="amor">Amor</option>
-            <option value="family">Familia</option>
-            <option value="other">Otra</option>
-          </select>
-        </div>
-        <div className="filter-sort-container">
-          <select
-            className="filter-sort-select"
-            defaultValue={""}
-            id="price"
-            name="price"
-            onChange={handleOrderbyChange}
-          >
-            <option disabled value="">
-              Ordenar
-            </option>
-            <option value="asc">Precio Ascendente</option>
-            <option value="des">Precio Descendente</option>
-          </select>
-        </div>
-        {props.admin ? (
-          <MdExitToApp onClick={handleLogout} />
-        ) : (
-          <AiFillSetting onClick={handleGoToLogin} />
-        )}
+          <div className={styles.filterSortContainer}>
+            <select
+              className={styles.filterSortSelect}
+              defaultValue={""}
+              id="category"
+              name="category"
+              onChange={handleCategoryChange}
+            >
+              <option disabled value="">
+                Categoría
+              </option>
+              <option value="all">Todas</option>
+              <option value="boxes">Cajas sorpresa</option>
+              <option value="breakfast">Desayunos sorpresa</option>
+              <option value="globes">Globos</option>
+              <option value="aniversary">Aniversario</option>
+              <option value="birthday">Cumpleaños</option>
+              <option value="amor">Amor</option>
+              <option value="family">Familia</option>
+              <option value="other">Otra</option>
+            </select>
+        
+            <select
+              className={styles.filterSortSelect}
+              defaultValue={""}
+              id="price"
+              name="price"
+              onChange={handleOrderbyChange}
+            >
+              <option disabled value="">
+                Ordenar
+              </option>
+              <option value="asc">Precio Ascendente</option>
+              <option value="des">Precio Descendente</option>
+            </select>
+          </div>
+        </nav>
+          {props.admin ? (
+            <MdExitToApp className={styles.icon} onClick={handleLogout} />
+          ) : (
+            <AiFillSetting className={styles.icon} onClick={handleGoToLogin} />
+          )}
       </header>
     </>
   );
 }
 
 export default Header;
+
+Header.propTypes = {
+  admin: PropTypes.string,
+  setSearchTerm: PropTypes.func,
+  searchTerm: PropTypes.string,
+  setAdmin: PropTypes.func,
+  setFilter: PropTypes.func,
+  setOrderby: PropTypes.func,
+};
