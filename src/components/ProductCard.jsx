@@ -110,18 +110,6 @@ function ProductCard(props) {
                 }}
               />
             ))}
-            <div className="container-textarea-new-product">
-              <label htmlFor="description">Descripción</label>
-              <textarea
-                {...register("description")}
-                type="text"
-                className="textarea-new-product"
-                id="description"
-                placeholder="Comienza a escribir"
-                rows="5"
-                defaultValue={props.product.description}
-              ></textarea>
-            </div>
 
             <div className="container-input-new-product">
               <label htmlFor="price">Precio</label>
@@ -266,7 +254,6 @@ function ProductCard(props) {
            <h2 className={styles.productName}>{props.product.name}</h2>
          
           <span className="product-price">${props.product.price}</span>
-          <p className={styles.productDescription}>{props.product.description}</p>
         </>
       )}
 

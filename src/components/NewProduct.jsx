@@ -15,7 +15,6 @@ function NewProduct(props) {
 
   const onSubmit = async (data) => {
     const name = data.name;
-    const description = data.description;
     const categories = data.categories;
     const price = data.price;
     const images = data.images;
@@ -38,7 +37,6 @@ function NewProduct(props) {
     try {
       await addDoc(productRef, {
         name,
-        description,
         categories,
         price,
         images: imageUrls,
@@ -58,10 +56,6 @@ function NewProduct(props) {
           <input
             {...register("name", {
               required: "Nombre obligatorio",
-              maxLength: {
-                value: 50,
-                message: "Máx 50 caracteres",
-              },
             })}
             type="text"
             className={styles.inputNewProduct}
@@ -127,7 +121,7 @@ function NewProduct(props) {
               value="love"
               id="category-love"
             />
-            <label htmlFor="category-love">Amor</label>
+            <label htmlFor="category-love">amor</label>
           </div>
           <div className="checkbox">
             <input
@@ -145,20 +139,8 @@ function NewProduct(props) {
               value="other"
               id="category-other"
             />
-            <label htmlFor="category-other">Otra</label>
+            <label htmlFor="category-other">otra</label>
           </div>
-        </div>
-
-        <div className={styles.containerInputNewProduct}>
-          <label htmlFor="description">Descripción:</label>
-          <textarea
-            {...register("description")}
-            type="text"
-            className={styles.inputNewProduct}
-            id="description"
-            placeholder="Comienza a escribir"
-            rows="5"
-          ></textarea>
         </div>
 
         <div className={styles.containerInputNewProduct}>

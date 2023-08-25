@@ -10,6 +10,7 @@ header{
     width: 20%;
     max-height: 10vh;
     margin-right: 5%;
+    cursor: pointer;
 }
 body{
     margin: 0 auto;
@@ -24,6 +25,8 @@ nav{
     padding: 20px 0;
 }
 .searchInput{
+    font-size: 15px;
+    color: white;
     border: none;
     border-bottom: 2px solid rgb(138, 110, 39);
     width: 50%;
@@ -31,6 +34,9 @@ nav{
     justify-self: center;
     background-color: transparent;
 }
+::placeholder {
+    color: rgb(255, 255, 255);
+  }
 
 .filterSortContainer{
     display: flex;
@@ -38,14 +44,18 @@ nav{
     gap: 10px;
 }
 .filterSortSelect{
+    cursor: pointer;
     width: 50%;
     height: 40px;
     background-color: transparent;
     border: none;
     border-bottom: 2px solid rgb(138, 110, 39);
-    color: rgb(70, 70, 70);
-
+    color: rgb(255, 255, 255);
 }
+.filterSortSelect option {
+    color: black;
+    font-weight: bold;
+  }
 .container-products{
     border: 1px solid red;
     padding: 5%;
@@ -63,11 +73,16 @@ nav{
 }
 .icon{
     position: absolute;
-    top: 10px;
-    right: 10px;
-    color: rgb(115, 115, 115);
-    font-size: 40px;
+    top: 10%;
+    right: 15px;
+    color: rgb(199, 199, 199);
+    font-size: 1.5rem;
+    cursor: pointer;
 }
+.icon:hover{
+    color: rgb(138, 110, 39);
+}
+
 @media (min-width: 860px) {
     nav{
         flex-direction: row;
@@ -76,5 +91,9 @@ nav{
     .searchInput{
         width: 30%;
         margin-right: 40px;
+    }
+    .icon{
+        top: 20%;
+        font-size: 2.5rem;
     }
 }

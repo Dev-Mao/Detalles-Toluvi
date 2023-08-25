@@ -5,6 +5,8 @@ import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { app } from "../lib/firebase";
 import NewProduct from "../components/NewProduct";
 import styles from "./Wall.module.css";
+import {BsPlusCircle} from "react-icons/bs"
+import { BsWhatsapp } from "react-icons/bs"
 
 function Wall() {
   const auth = getAuth(app);
@@ -14,6 +16,18 @@ function Wall() {
   const [orderby, setOrderby] = useState("");
   const [admin, setAdmin] = useState(null);
   const [showNewProduct, setShowNewProduct] = useState(false);
+
+  const handleWhatsAppClick = () => {
+    // Reemplaza el número de teléfono y el mensaje con los valores deseados
+    const phoneNumber = '+57 3044176222';
+    const message = 'Hola, estoy interesado/a en unos de tus productos, vengo desde la página.';
+
+    // Crea la URL de redirección a WhatsApp
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+    // Redirige a WhatsApp
+    window.location.href = whatsappUrl;
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -40,7 +54,10 @@ function Wall() {
       />
       {admin && (
         <>
-          <button className={styles.btnNewProduct} onClick={handleshowForm}>Crear producto</button>
+        <div className={styles.iconNewProductContainer}>
+          <BsPlusCircle className={styles.iconNewProduct} onClick={handleshowForm}/>
+        <span>Nuevo</span>
+        </div>
           {showNewProduct && (
             <NewProduct setShowNewProduct={setShowNewProduct} />
           )}
@@ -57,7 +74,11 @@ function Wall() {
         admin={admin}
         setOrderby={setOrderby}
       />
+      <button className={styles.logoWhatsappContainer}  onClick={handleWhatsAppClick}>
+          <BsWhatsapp className={styles.logoWhatsapp}/>
+        </button>
     </>
+
   );
 }
 

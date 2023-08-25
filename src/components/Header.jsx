@@ -1,5 +1,5 @@
 import LogoPng from "../assets/LogoPng.png";
-import { AiFillSetting } from "react-icons/ai";
+import { RiAdminLine } from "react-icons/ri";
 import { MdExitToApp } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { signOut, getAuth } from "firebase/auth";
@@ -13,6 +13,8 @@ function Header(props) {
   const handleGoToLogin = () => {
     navigate("/login");
   };
+
+  
 
   const handleLogout = () => {
     signOut(auth)
@@ -30,11 +32,14 @@ function Header(props) {
   const handleOrderbyChange = (event) => {
     props.setOrderby(event.target.value);
   };
+  const handleRefresh = () => {
+    window.location.reload()
+  }
 
   return (
     <>
       <header>
-        <img src={LogoPng} className={styles.logo} alt="Logo Toluvi en PNG" />
+        <img src={LogoPng} onClick = {handleRefresh} className={styles.logo} alt="Logo Toluvi en PNG" />
         <nav>
             <input
               type="search"
@@ -85,7 +90,7 @@ function Header(props) {
           {props.admin ? (
             <MdExitToApp className={styles.icon} onClick={handleLogout} />
           ) : (
-            <AiFillSetting className={styles.icon} onClick={handleGoToLogin} />
+            <RiAdminLine className={styles.icon} onClick={handleGoToLogin} />
           )}
       </header>
     </>

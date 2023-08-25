@@ -1,4 +1,7 @@
-body{
+*{
+    font-family: 'Gruppo', sans-serif;
+    letter-spacing: 1px;
+}body{
     background-image: url('assets/fondo.jpg');
     background-size: cover;
     background-attachment: fixed;

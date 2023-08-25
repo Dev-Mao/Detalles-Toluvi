@@ -1,12 +1,57 @@
-.btnNewProduct{
-    margin: 10px;
-    padding: 8px ;
-    font-weight: bold;
-    background-color: rgb(164, 128, 39);
+.iconNewProduct{
+    margin: 5px;
+    font-size: 30px;
 }
 
-.btnNewProduct:hover{
-    background-color: rgb(170, 125, 11);
+.iconNewProductContainer:hover{
+    background-color: rgb(184, 184, 184);
     transform: scale(1.1);
     transition: 0.2s;
+}
+.iconNewProductContainer{
+    cursor: pointer;
+    margin: 10px;
+    background-color: rgb(208, 208, 208);
+    width: fit-content;
+    padding: 0 10px 0 0;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logoWhatsapp{
+    color:rgb(0, 161, 0);
+    font-size: 45px;
+}
+.logoWhatsappContainer{
+    border:none;
+    font-size: 12px;
+    padding: 15px;
+    border-radius: 50%;
+    background-color: rgb(214, 214, 214);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: fit-content;
+    bottom: 3%;
+    right: 2%;
+    color: white;
+    position: fixed;
+    max-width: 200px;
+}
+.logoWhatsappContainer:hover{
+    background-color: rgb(21, 21, 21);
+    transform: scale(1.1);
+    transition: 0.2s;
+    box-shadow: rgb(172, 134, 21) 1px 1px 5px 1px;
+}
+@media (min-width: 860px) {
+
+    .logoWhatsappContainer{
+        font-size: 1rem;
+    }
+    .icon{
+        top: 20%;
+        font-size: 2.5rem;
+    }
 }
