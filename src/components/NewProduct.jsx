@@ -3,6 +3,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 import PropTypes from "prop-types";
+import styles from "./NewProduct.module.css";
 
 function NewProduct(props) {
   const {
@@ -50,9 +51,9 @@ function NewProduct(props) {
   };
 
   return (
-    <>
-      <form className="form-new-product" onSubmit={handleSubmit(onSubmit)}>
-        <div className="container-input-new-product">
+    <div className={styles.containerFormNewProduct}>
+      <form className={styles.formNewProduct} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.containerInputNewProduct}>
           <label htmlFor="name">Nombre</label>
           <input
             {...register("name", {
@@ -63,17 +64,17 @@ function NewProduct(props) {
               },
             })}
             type="text"
-            className="input-new-product"
+            className={styles.inputNewProduct}
             id="name"
-            placeholder="Nombre del producto"
+            placeholder="Comienza a escribir"
           />
           {errors.name && (
             <p className="error-message">{errors.name.message}</p>
           )}
         </div>
 
-        <div className="container-select-new-product">
-          <label>Categoría</label>
+        <div>
+          <label>Categoría(s):</label>
           <div className="checkbox">
             <input
               {...register("categories")}
@@ -148,20 +149,20 @@ function NewProduct(props) {
           </div>
         </div>
 
-        <div className="container-textarea-new-product">
-          <label htmlFor="description">Descripción</label>
+        <div className={styles.containerInputNewProduct}>
+          <label htmlFor="description">Descripción:</label>
           <textarea
             {...register("description")}
             type="text"
-            className="textarea-new-product"
+            className={styles.inputNewProduct}
             id="description"
             placeholder="Comienza a escribir"
             rows="5"
           ></textarea>
         </div>
 
-        <div className="container-input-new-product">
-          <label htmlFor="price">Precio</label>
+        <div className={styles.containerInputNewProduct}>
+          <label htmlFor="price">Precio:</label>
           <input
             {...register("price", {
               required: "Ingresa el precio",
@@ -171,23 +172,23 @@ function NewProduct(props) {
               },
             })}
             type="number"
-            className="input-new-product"
+            className={styles.inputNewProduct}
             id="price"
-            placeholder="20.000"
+            placeholder="$"
           />
           {errors.price && (
             <p className="error-message">{errors.price.message}</p>
           )}
         </div>
 
-        <div className="container-img-new-product">
+        <div className={styles.containerInputNewProduct}>
           <label htmlFor="images">Imágenes del producto</label>
           <input
             {...register("images", {
               required: "Adjunta al menos una imagen",
             })}
             type="file"
-            className="input-new-product"
+            className={styles.inputNewProduct}
             id="images"
             multiple
             accept="image/*"
@@ -197,11 +198,11 @@ function NewProduct(props) {
           )}
         </div>
 
-        <button type="submit" className="create-btn">
+        <button type="submit" className={styles.submitBtn}>
           Crear
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

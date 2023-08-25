@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { app } from "../lib/firebase";
 import { useNavigate } from "react-router-dom";
+import styles from "./LoginForm.module.css";
+import Logo from '../assets/logoPNG.png'
 
 const auth = getAuth(app);
 const LoginForm = () => {
@@ -31,10 +33,11 @@ const LoginForm = () => {
   };
 
   return (
-    <>
-      <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
-        <div className="container-input-login">
-          <label htmlFor="email">Tu correo</label>
+    <div className={styles.containerFormLogin}>
+      <form className={styles.formLogin} onSubmit={handleSubmit(onSubmit)}>
+        <img className={styles.logo} src={Logo} alt="" />
+        <div className={styles.containerInputLogin}>
+          <label htmlFor="email">Correo de administrador</label>
           <input
             {...register("email", {
               required: "Correo obligatorio",
@@ -44,7 +47,7 @@ const LoginForm = () => {
               },
             })}
             type="text"
-            className="input-login"
+            className={styles.inputLogin}
             id="email"
             placeholder="correo@ejemplo.com"
           />
@@ -53,8 +56,8 @@ const LoginForm = () => {
           )}
         </div>
 
-        <div className="container-input-login">
-          <label htmlFor="password">Password</label>
+        <div className={styles.containerInputLogin}>
+          <label htmlFor="password">Contraseña:</label>
           <input
             {...register("password", {
               required: "Ingresa la contraseña",
@@ -64,7 +67,7 @@ const LoginForm = () => {
               },
             })}
             type="password"
-            className="input-login"
+            className={styles.inputLogin}
             id="password"
             placeholder="•••••••"
           />
@@ -73,11 +76,11 @@ const LoginForm = () => {
           )}
         </div>
 
-        <button type="submit" className="submit-btn">
-          Login
+        <button type="submit" className={styles.submitBtn}>
+          Ingresar
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

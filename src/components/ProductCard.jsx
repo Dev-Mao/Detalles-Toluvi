@@ -235,7 +235,6 @@ function ProductCard(props) {
       ) : (
         // Vista de solo lectura
         <>
-          <h2 className="product-name">{props.product.name}</h2>
           <div className={styles.containerImg}>
           {props.product.images.map((image, index) => (
             <img
@@ -248,10 +247,9 @@ function ProductCard(props) {
               }}
             />
           ))}
+          
            </div>
-
-          {/* Flechas para cambiar de imagen */}
-          <div>
+          <div className={styles.containerBtns}>
             <button
               onClick={showPreviousImage}
               disabled={currentImageIndex === 0}
@@ -265,13 +263,15 @@ function ProductCard(props) {
               Siguiente
             </button>
           </div>
+           <h2 className={styles.productName}>{props.product.name}</h2>
+         
           <span className="product-price">${props.product.price}</span>
           <p className={styles.productDescription}>{props.product.description}</p>
         </>
       )}
 
       {props.admin && (
-        <div>
+        <div className={styles.containerBtnEdit}>
           {props.isEditing ? (
             <button onClick={handleSubmit(onEdit)}>Guardar</button>
           ) : props.isDeleting ? (

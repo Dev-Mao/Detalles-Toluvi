@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { app } from "../lib/firebase";
 import NewProduct from "../components/NewProduct";
+import styles from "./Wall.module.css";
 
 function Wall() {
   const auth = getAuth(app);
@@ -39,7 +40,7 @@ function Wall() {
       />
       {admin && (
         <>
-          <button onClick={handleshowForm}>Crear producto</button>
+          <button className={styles.btnNewProduct} onClick={handleshowForm}>Crear producto</button>
           {showNewProduct && (
             <NewProduct setShowNewProduct={setShowNewProduct} />
           )}
