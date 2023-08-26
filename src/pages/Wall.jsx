@@ -5,8 +5,7 @@ import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { app } from "../lib/firebase";
 import NewProduct from "../components/NewProduct";
 import styles from "./Wall.module.css";
-import {BsPlusCircle} from "react-icons/bs"
-import { BsWhatsapp } from "react-icons/bs"
+import {BsPlusCircle, BsWhatsapp} from "react-icons/bs"
 
 function Wall() {
   const auth = getAuth(app);
@@ -33,8 +32,7 @@ function Wall() {
     onAuthStateChanged(auth, (user) => {
       setAdmin(user);
     });
-  }),
-    [];
+  }, [auth]);
 
   const handleshowForm = () => {
     showNewProduct ? setShowNewProduct(false) : setShowNewProduct(true);

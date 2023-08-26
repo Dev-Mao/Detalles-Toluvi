@@ -5,10 +5,23 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 import PropTypes from "prop-types";
 import styles from "./Products.module.css";
-
+import { BsWhatsapp, BsChevronRight, BsChevronLeft } from "react-icons/bs";
 
 function ProductCard(props) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleWhatsAppClick = (productName) => {
+    // Reemplaza el número de teléfono y el mensaje con los valores deseados
+    const phoneNumber = '+57 3044176222';
+    const message = `Hola, estoy interesado/a en el producto: ${productName}. ¿Podrías darme más información?`;
+
+    // Crea la URL de redirección a WhatsApp
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+    // Redirige a WhatsApp
+    window.location.href = whatsappUrl;
+  };
+
   const {
     register,
     handleSubmit,
@@ -63,12 +76,12 @@ function ProductCard(props) {
 
   const handleCancel = () => {
     props.setIsDeleting(false);
-  }
+  };
 
   const onDelete = () => {
-    deleteDoc(doc(getFirestore(), 'products', props.product.id));
+    deleteDoc(doc(getFirestore(), "products", props.product.id));
     handleCancel();
-  }
+  };
 
   const handleDelete = () => {
     props.setIsDeleting(true);
@@ -223,37 +236,43 @@ function ProductCard(props) {
       ) : (
         // Vista de solo lectura
         <>
+          <h2 className={styles.productName}>{props.product.name}</h2>
+
           <div className={styles.containerImg}>
-          {props.product.images.map((image, index) => (
-            <img
-              className="product-img"
-              src={image}
-              key={index}
-              alt={`Product ${index + 1}`}
-              style={{
-                display: index === currentImageIndex ? "block" : "none",
-              }}
-            />
-          ))}
-          
-           </div>
-          <div className={styles.containerBtns}>
-            <button
+            <BsChevronLeft
+              className={styles.arrow}
               onClick={showPreviousImage}
               disabled={currentImageIndex === 0}
             >
               Anterior
-            </button>
-            <button
+            </BsChevronLeft>
+
+            {props.product.images.map((image, index) => (
+              <img
+                className="product-img"
+                src={image}
+                key={index}
+                alt={`Product ${index + 1}`}
+                style={{
+                  display: index === currentImageIndex ? "block" : "none",
+                }}
+              />
+            ))}
+
+            <BsChevronRight
+              className={styles.arrow}
               onClick={showNextImage}
               disabled={currentImageIndex === props.product.images.length - 1}
             >
               Siguiente
-            </button>
+            </BsChevronRight>
           </div>
-           <h2 className={styles.productName}>{props.product.name}</h2>
-         
-          <span className="product-price">${props.product.price}</span>
+          <span className={styles.price}>${props.product.price}</span>
+
+          <button className={styles.goToWpp} onClick={() => handleWhatsAppClick(props.product.name)} >
+            <BsWhatsapp className={styles.logoWhatsapp}/>
+            Me interesa
+          </button>
         </>
       )}
 
@@ -290,5 +309,5 @@ ProductCard.propTypes = {
   isEditing: PropTypes.bool,
   isDeleting: PropTypes.bool,
   setIsDeleting: PropTypes.func,
-  setIsEditing: PropTypes.func
+  setIsEditing: PropTypes.func,
 };

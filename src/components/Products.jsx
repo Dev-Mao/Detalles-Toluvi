@@ -44,7 +44,8 @@ function Products(props) {
         .catch((error) => {
           console.error('Error obteniendo los datos:', error);
         });
-    }, [props.filter, props.orderby, props.showNewProduct, isEditing, isDeleting, props.searchTerm, productsRef]);
+        console.log('holaa')
+    }, [props.filter, props.orderby, props.showNewProduct, isEditing, isDeleting, props.searchTerm]);
 
   return (
     <>

@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
 }
 
 .productCard{
@@ -11,22 +12,53 @@
     width: 40%;
     margin: 10px;
     overflow-wrap: break-word;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
+    background-color:  rgb(0, 0, 0, 0.9) ;
+    padding: 20px 0px 0 0px;
     position: relative;
+    color:white;
+}
+h2{
+    font-size: 20px;
+}
+.goToWpp{
+    margin-top: 5px;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+    margin-top: auto;
+    text-align: center;
+    padding: 8px 0;
+    background-color:  white ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logoWhatsapp{
+    margin-right: 10px;
+
+    font-size: 20px;
+}
+.goToWpp:hover{
+    transform: scale(1.02);
+    transition: 0.2s;
+    background-color: #4f9e45;
+    color: white;
 }
 
 .productCard img{
-    width: 100%;
-    max-height: 100%;
+    width: 80%;
+    height: 100%;
 }
 
 .containerImg{
     margin:0 0 5px 0;
     width: 100%;
-    height: 50%;
     display: flex;
     align-items: center;
+    position: relative;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 10px;
 }
 
 .productDescription{
@@ -37,13 +69,16 @@
 .productName{
     margin: 0;
 }
-.containerBtns{
-    margin:0;
-}
 .containerBtnEdit{
     margin-top: auto;
 }
-
+.arrow{
+    color: white;
+    font-size: 30px;
+    padding: 2px;
+    cursor: pointer;
+    
+}
 @media (min-width: 860px) {
     .productCard{
         width: 20%;
