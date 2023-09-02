@@ -1,89 +1,134 @@
-.containerProducts{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
+.containerProducts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  align-items: stretch;
 }
 
-.productCard{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40%;
-    margin: 10px;
-    overflow-wrap: break-word;
-    background-color:  rgb(0, 0, 0, 0.9) ;
-    padding: 20px 0px 0 0px;
-    position: relative;
-    color:white;
-}
-h2{
-    font-size: 20px;
-}
-.goToWpp{
-    margin-top: 5px;
-    color: black;
-    font-weight: bold;
-    width: 100%;
-    margin-top: auto;
-    text-align: center;
-    padding: 8px 0;
-    background-color:  white ;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.logoWhatsapp{
-    margin-right: 10px;
-
-    font-size: 20px;
-}
-.goToWpp:hover{
-    transform: scale(1.02);
-    transition: 0.2s;
-    background-color: #4f9e45;
-    color: white;
+.productCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  margin: 10px;
+  overflow-wrap: break-word;
+  background-color: rgb(0, 0, 0, 0.9);
+  padding: 20px 0px 0 0px;
+  position: relative;
+  color: white;
+  gap: 10px;
 }
 
-.productCard img{
-    width: 80%;
-    height: 100%;
+h2 {
+  font-size: 20px;
 }
 
-.containerImg{
-    margin:0 0 5px 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    align-items: center;
-    overflow: hidden;
-    margin-top: 10px;
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-.productDescription{
-    margin: 0;
-    margin-bottom: 8px;
-    max-width: 90%;
+.imagesEdit{
+    font-size: 0.8rem;
 }
-.productName{
-    margin: 0;
+
+.goToWpp {
+  margin-top: 5px;
+  color: black;
+  font-weight: bold;
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+  padding: 8px 0;
+  background-color: rgb(191, 191, 191);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.containerBtnEdit{
-    margin-top: auto;
+
+.logoWhatsapp {
+  margin-right: 10px;
+  font-size: 20px;
 }
-.arrow{
-    color: white;
-    font-size: 30px;
-    padding: 2px;
-    cursor: pointer;
-    
+
+.goToWpp:hover {
+  transform: scale(1.02);
+  transition: 0.2s;
+  background-color: #4f9e45;
+  color: white;
 }
-@media (min-width: 860px) {
-    .productCard{
-        width: 20%;
-    }
-    .containerImg{
-        height: 60%;
-    }
+
+.productCard img {
+  height: 270px;
+  width: 230px;
+  margin: 0 5px;
+}
+
+.containerImg {
+  display: flex;
+  align-items: center;
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.containerImgEditing {
+  width: 20%;
+}
+
+.productDescription {
+  margin: 0;
+  margin-bottom: 8px;
+  max-width: 90%;
+}
+.productName {
+  margin: 0;
+  background-color: transparent;
+  color: white;
+  width: 220px;
+}
+.containerBtnEdit {
+  margin-top: auto;
+}
+.arrow {
+  color: white;
+  font-size: 30px;
+  padding: 2px;
+  cursor: pointer;
+}
+.arrow:hover {
+  color: rgb(170, 125, 11);
+}
+
+.btnEdit, .btnDelete, .btnCancel, .btnConfirm{
+  width: 160px;
+  height: 35px;
+  font-weight: bold;
+  background-color: rgb(118, 118, 118);
+  border: 1px solid black;
+}
+
+.btnEdit:hover, .btnSave:hover, .btnCancel:hover{
+  background-color: rgb(170, 125, 11);
+  transform: scale(1.03);
+  transition: 0.2s;
+}
+
+.btnDelete:hover, .btnConfirm:hover{
+  background-color: rgb(143, 3, 3);
+  transform: scale(1.03);
+  transition: 0.2s;
+  color: white;
+}
+
+.btnSave{
+  width: 320px;
+  background-color: rgb(118, 118, 118);
+  font-weight: bold;
+  height: 35px;
+  border:1px solid black;
 }

@@ -16,6 +16,7 @@ function NewProduct(props) {
   const onSubmit = async (data) => {
     const name = data.name;
     const categories = data.categories;
+    const description = data.description;
     const price = data.price;
     const images = data.images;
     // Upload images to Firebase Storage
@@ -38,6 +39,7 @@ function NewProduct(props) {
       await addDoc(productRef, {
         name,
         categories,
+        description,
         price,
         images: imageUrls,
       });
@@ -121,7 +123,7 @@ function NewProduct(props) {
               value="love"
               id="category-love"
             />
-            <label htmlFor="category-love">amor</label>
+            <label htmlFor="category-love">Amor</label>
           </div>
           <div className="checkbox">
             <input
@@ -136,13 +138,31 @@ function NewProduct(props) {
             <input
               {...register("categories")}
               type="checkbox"
+              value="ancheta"
+              id="category-ancheta"
+            />
+            <label htmlFor="category-ancheta">Anchetas</label>
+          </div>
+          <div className="checkbox">
+            <input
+              {...register("categories")}
+              type="checkbox"
               value="other"
               id="category-other"
             />
-            <label htmlFor="category-other">otra</label>
+            <label htmlFor="category-other">Otra</label>
           </div>
         </div>
-
+        <div className={styles.containerInputNewProduct}>
+          <label htmlFor="description">Descripción: </label>
+          <textarea
+            type="text"
+            className={styles.inputNewProduct}
+            id="description"
+            rows={5}
+            placeholder="Comienza a escribir"
+          />
+        </div>
         <div className={styles.containerInputNewProduct}>
           <label htmlFor="price">Precio:</label>
           <input

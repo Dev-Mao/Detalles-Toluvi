@@ -12,11 +12,13 @@ function ProductCard(props) {
 
   const handleWhatsAppClick = (productName) => {
     // Reemplaza el número de teléfono y el mensaje con los valores deseados
-    const phoneNumber = '+57 3044176222';
+    const phoneNumber = "+57 3044176222";
     const message = `Hola, estoy interesado/a en el producto: ${productName}. ¿Podrías darme más información?`;
 
     // Crea la URL de redirección a WhatsApp
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}`;
 
     // Redirige a WhatsApp
     window.location.href = whatsappUrl;
@@ -93,12 +95,11 @@ function ProductCard(props) {
         // Vista editable
         <>
           <form>
-            <div className="container-textarea-new-product">
-              <label htmlFor="name">Nombre</label>
+            <div>
               <input
                 {...register("name")}
                 type="text"
-                className="input-new-product"
+                className={styles.productName}
                 id="name"
                 placeholder="Nombre del producto"
                 defaultValue={props.product.name}
@@ -107,43 +108,30 @@ function ProductCard(props) {
             <input
               {...register("images")}
               type="file"
-              className="input-new-product"
+              className={styles.imagesEdit}
               id="images"
               multiple
               accept="image/*"
             />
-            {props.product.images.map((image, index) => (
-              <img
-                className="product-img"
-                src={image}
-                key={index}
-                alt={`Product ${index + 1}`}
-                style={{
-                  display: index === currentImageIndex ? "block" : "none",
-                }}
-              />
-            ))}
 
-            <div className="container-input-new-product">
-              <label htmlFor="price">Precio</label>
-              <input
-                {...register("price", {
-                  required: "Ingresa el precio",
-                  maxLength: {
-                    value: 20,
-                    message: "Máx 20 caracteres",
-                  },
-                })}
-                type="number"
-                className="input-new-product"
-                id="price"
-                placeholder="20.000"
-                defaultValue={props.product.price}
-              />
-              {errors.price && (
-                <p className="error-message">{errors.price.message}</p>
-              )}
-            </div>
+            <input
+              {...register("price", {
+                required: "Ingresa el precio",
+                maxLength: {
+                  value: 20,
+                  message: "Máx 20 caracteres",
+                },
+              })}
+              type="number"
+              className={styles.productName}
+              id="price"
+              placeholder="Precio"
+              defaultValue={props.product.price}
+            />
+            {errors.price && (
+              <p className="error-message">{errors.price.message}</p>
+            )}
+
             <div className="container-select-new-product">
               <label>Categoría</label>
               <div className="checkbox">
@@ -224,6 +212,16 @@ function ProductCard(props) {
                 <input
                   {...register("categories")}
                   type="checkbox"
+                  value="ancheta"
+                  id="category-ancheta"
+                  defaultChecked={props.product.categories.includes("ancheta")}
+                />
+                <label htmlFor="category-family">Anchetas</label>
+              </div>
+              <div className="checkbox">
+                <input
+                  {...register("categories")}
+                  type="checkbox"
                   value="other"
                   id="category-other"
                   defaultChecked={props.product.categories.includes("other")}
@@ -231,6 +229,15 @@ function ProductCard(props) {
                 <label htmlFor="category-other">Otra</label>
               </div>
             </div>
+            <textarea
+              {...register("description")}
+              type="text"
+              className={styles.productName}
+              id="name"
+              placeholder="Comienza a escribir.."
+              defaultValue={props.product.description}
+              rows={5}
+            />
           </form>
         </>
       ) : (
@@ -258,6 +265,7 @@ function ProductCard(props) {
                 }}
               />
             ))}
+            <span>{props.product.description}</span>
 
             <BsChevronRight
               className={styles.arrow}
@@ -268,34 +276,37 @@ function ProductCard(props) {
             </BsChevronRight>
           </div>
           <span className={styles.price}>${props.product.price}</span>
-
-          <button className={styles.goToWpp} onClick={() => handleWhatsAppClick(props.product.name)} >
-            <BsWhatsapp className={styles.logoWhatsapp}/>
-            Me interesa
-          </button>
         </>
       )}
 
-      {props.admin && (
+      {props.admin ? (
         <div className={styles.containerBtnEdit}>
           {props.isEditing ? (
-            <button onClick={handleSubmit(onEdit)}>Guardar</button>
+            <button className={styles.btnSave} onClick={handleSubmit(onEdit)}>Guardar</button>
           ) : props.isDeleting ? (
             <div>
               <p>
                 ¿Estás seguro que quieres eliminar el producto{" "}
                 <strong>{props.product.name}</strong>?
               </p>
-              <button onClick={onDelete}>Sí</button>
-              <button onClick={handleCancel}>No</button>
+              <button className = {styles.btnCancel} onClick={handleCancel}>No</button>
+              <button className = {styles.btnConfirm} onClick={onDelete}>Sí</button>
             </div>
           ) : (
             <div>
-              <button onClick={handleEdit}>Editar</button>
-              <button onClick={handleDelete}>Eliminar</button>
+              <button className = {styles.btnEdit} onClick={handleEdit}>Editar</button>
+              <button className = {styles.btnDelete} onClick={handleDelete}>Eliminar</button>
             </div>
           )}
         </div>
+      ) : (
+        <button
+          className={styles.goToWpp}
+          onClick={() => handleWhatsAppClick(props.product.name)}
+        >
+          <BsWhatsapp className={styles.logoWhatsapp} />
+          Me interesa
+        </button>
       )}
     </div>
   );

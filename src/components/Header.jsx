@@ -69,6 +69,7 @@ function Header(props) {
               <option value="birthday">Cumpleaños</option>
               <option value="amor">Amor</option>
               <option value="family">Familia</option>
+              <option value="ancheta">Anchetas</option>
               <option value="other">Otra</option>
             </select>
         

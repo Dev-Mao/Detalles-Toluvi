@@ -52,8 +52,8 @@ function Wall() {
       />
       {admin && (
         <>
-        <div className={styles.iconNewProductContainer}>
-          <BsPlusCircle className={styles.iconNewProduct} onClick={handleshowForm}/>
+        <div className={styles.iconNewProductContainer} onClick={handleshowForm}>
+          <BsPlusCircle className={styles.iconNewProduct}/>
         <span>Nuevo</span>
         </div>
           {showNewProduct && (
